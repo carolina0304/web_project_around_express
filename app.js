@@ -25,6 +25,20 @@ app.get("/users/:id", (req, res) => {
   if (user) {
     res.json(user); //Si se encuentra el usuario, devuelve sus datos en formato JSON.
   } else {
-    res.status(404).json({ error: "Usuario no encontrado" }); //Si no se encuentra, devuelve un error 404.
+    res.status(404).json({ message: "ID de usuario no encontrado" }); //Si no se encuentra, devuelve un error 404.
   }
 }); //Define una ruta para obtener un usuario por su ID.
+
+app.get("/cards/:id", (req, res) => {
+  const { id } = req.params; //Obtiene el ID de la tarjeta desde los parametros de la ruta.
+  const card = cards.find((c) => c._id === id); //Busca la tarjeta con el ID especificado.
+  if (card) {
+    res.json(card); //Si se encuentra la tarjeta, devuelve sus datos en formato JSON.
+  } else {
+    res.status(404).json({ error: "Tarjeta no encontrada" }); //Si no se encuentra, devuelve un error 404.
+  }
+}); //Define una ruta para obtener una tarjeta por su ID.
+
+app.use((req, res) => {
+  res.status(404).json({ message: "Recurso solicitado no encontrado" });
+}); //Manejo de rutas no encontradas.
