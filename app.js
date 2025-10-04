@@ -1,6 +1,10 @@
 const express = require("express"); //importa Express.
 
+const mongoose = require("mongoose"); //importa Mongoose.
+
 const app = express(); //crea tu aplicacion.
+
+mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
 
 const PORT = 3000; //Define en que puerto.
 
