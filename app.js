@@ -2,12 +2,17 @@ const express = require("express"); //importa Express.
 
 const mongoose = require("mongoose"); //importa Mongoose.
 
+const Card = require("./models/card.js"); //importa el modelo de tarjeta.
+
+const User = require("./models/user.js"); //importa el modelo de usuario.
+
 const app = express(); //crea tu aplicacion.
 
 mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
 
 const PORT = 3000; //Define en que puerto.
 
+//Aqui inicia y se pone en linea el servidor express.
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 }); //Levanta el servidor y escucha en el puerto definido.
