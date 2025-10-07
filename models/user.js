@@ -16,7 +16,15 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     required: true,
-    link: url,
+    validator: {
+      //validador para comprobar que la URL es correcta.
+      validator(v) {
+        return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/.test(
+          v
+        );
+      },
+      message: "Por favor, introduce una Url válida",
+    },
   },
 });
 
