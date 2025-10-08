@@ -8,14 +8,24 @@ const User = require("./models/user.js"); //importa el modelo de usuario.
 
 const app = express(); //crea tu aplicacion.
 
-mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
+const mongo_url = "mongodb://localhost:27017/aroundb"; //URL de conexion a la base de datos MongoDB.
+
+//mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
 
 const PORT = 3000; //Define en que puerto.
 
+(async () => {
+  await mongoose.connect(mongo_url); //conecta a la base de datos MongoDB llamada "aroundb".
+  console.log("Conectado a la base de datos MongoDB");
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+  }); //Levanta el servidor y escucha en el puerto definido.
+})(); //Funcion autoejecutable para manejar asincronía.
+
 //Aqui inicia y se pone en linea el servidor express.
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-}); //Levanta el servidor y escucha en el puerto definido.
+//app.listen(PORT, () => {
+//console.log(`Servidor corriendo en el puerto ${PORT}`);
+//}); //Levanta el servidor y escucha en el puerto definido.
 
 const users = require("./data/users.json"); //importa el archivo JSON con los datos de usuarios.
 const cards = require("./data/cards.json"); //importa el archivo JSON con los datos de tarjetas.
