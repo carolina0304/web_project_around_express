@@ -1,9 +1,12 @@
-const path = require("path");
-const fs = require("fs");
+const express = require("express");
+const router = express.Router();
+
+//const path = require("path");
+//const fs = require("fs");
 
 const User = require("../models/user.js"); // ajusta la ruta según tu estructura
 
-router.get("/users", (req, res) => {
+router.get("/", (req, res) => {
   User.find({})
     .then((users) => {
       res.send({ data: users }); //✅ Envía los usuarios al cliente
@@ -27,3 +30,5 @@ fs.readFile(rutaUsers, "utf8", (err, data) => {
     console.error("Error al parsear JSON:", parseErr);
   }
 });
+
+module.exports = router;
