@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const { obtenerUsuarios, hola, hello } = require("../controllers/users.js");
 
 //const path = require("path");
 //const fs = require("fs");
 
 const User = require("../models/user.js"); // ajusta la ruta según tu estructura
 
-router.get("/", (req, res) => {
-  User.find({})
-    .then((users) => {
-      res.send({ data: users }); //✅ Envía los usuarios al cliente
-    })
-    .catch((err) => {
-      res.status(500).send({ message: "Error interno del servidor" }); // ✅ Envía error 500
-    });
-});
+router.get("/getusers", obtenerUsuarios);
 
+router.get("/saludaespanol", hola);
+
+router.get("/saludaingles", hello);
+
+/*
 const rutaUsers = path.join(__dirname, "data", "users.json");
 
 fs.readFile(rutaUsers, "utf8", (err, data) => {
@@ -29,6 +27,6 @@ fs.readFile(rutaUsers, "utf8", (err, data) => {
   } catch (parseErr) {
     console.error("Error al parsear JSON:", parseErr);
   }
-});
+});*/
 
 module.exports = router;
