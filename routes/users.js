@@ -1,17 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { obtenerUsuarios, hola, hello } = require("../controllers/users.js");
+const { getUsers, getUserbyID } = require("../controllers/users.js");
 
 //const path = require("path");
 //const fs = require("fs");
 
 const User = require("../models/user.js"); // ajusta la ruta según tu estructura
 
-router.get("/getusers", obtenerUsuarios);
+router.get("/", getUsers);
 
-router.get("/saludaespanol", hola);
+router.get("/:userId", getUserbyID);
 
-router.get("/saludaingles", hello);
+/*router.get("users/:userId", UsuarioID);
+
+router.post("/saludaingles", hello);*/
 
 /*
 const rutaUsers = path.join(__dirname, "data", "users.json");
