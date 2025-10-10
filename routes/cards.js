@@ -1,3 +1,16 @@
+const express = require("express");
+const router = express.Router();
+
+const {} = require("../controllers/users.js");
+
+const Card = require("../models/card.js");
+
+router.get("/", getCards);
+
+router.post("/", createNewcard);
+
+router.delete("/:cardId", deleteCard);
+
 const path = require("path");
 const fs = require("fs");
 

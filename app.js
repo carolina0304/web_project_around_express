@@ -7,10 +7,16 @@ const Card = require("./models/card.js"); //importa el modelo de tarjeta.
 const User = require("./models/user.js"); //importa el modelo de usuario.
 
 const app = express(); //crea tu aplicacion.
+app.use(express.json());
 
 const mongo_url = "mongodb://localhost:27017/aroundb"; //URL de conexion a la base de datos MongoDB.
 
-const { getUsers, getUserbyID, createUser } = require("./routes/users.js");
+const usersRouter = require("./routes/users.js");
+app.use("/users", usersRouter);
+//const { getUsers, getUserbyID, createUser } = require("./routes/users.js");
+//console.log("getUsers:", typeof getUsers);
+//console.log("getUserbyID:", typeof getUserbyID);
+//console.log("createUser:", typeof createUser);
 //mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
 
 const PORT = 3000; //Define en que puerto.
@@ -31,19 +37,19 @@ const PORT = 3000; //Define en que puerto.
 const users = require("./data/users.json"); //importa el archivo JSON con los datos de usuarios.
 const cards = require("./data/cards.json"); //importa el archivo JSON con los datos de tarjetas.
 
-app.use("/", getUsers);
-app.use("/:userId", getUserbyID);
-app.use("/", createUser);
+//app.get("/", getUsers);
+//app.get("/:userId", getUserbyID);
+//app.post("/", createUser);
 
-app.get("/users", (req, res) => {
+/*app.get("/users", (req, res) => {
   res.json(users);
-}); //Define una ruta para obtener todos los usuarios.
+}); //Define una ruta para obtener todos los usuarios.*/
 
 app.get("/cards", (req, res) => {
   res.json(cards);
 }); //Define una ruta para obtener todas las tarjetas.
 
-app.get("/users/:id", (req, res) => {
+/*app.get("/users/:id", (req, res) => {
   const { id } = req.params; //Obtiene el ID del usuario desde los parametros de la ruta.
   const user = users.find((u) => u._id === id); //Busca el usuario con el ID especificado.
   if (user) {
@@ -51,7 +57,7 @@ app.get("/users/:id", (req, res) => {
   } else {
     res.status(404).json({ message: "ID de usuario no encontrado" }); //Si no se encuentra, devuelve un error 404.
   }
-}); //Define una ruta para obtener un usuario por su ID.
+}); //Define una ruta para obtener un usuario por su ID.*/
 
 app.get("/cards/:id", (req, res) => {
   const { id } = req.params; //Obtiene el ID de la tarjeta desde los parametros de la ruta.
