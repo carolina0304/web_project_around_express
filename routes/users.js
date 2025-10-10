@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getUsers, getUserbyID } = require("../controllers/users.js");
+const {
+  getUsers,
+  getUserbyID,
+  createUser,
+} = require("../controllers/users.js");
 
 //const path = require("path");
 //const fs = require("fs");
@@ -10,6 +14,8 @@ const User = require("../models/user.js"); // ajusta la ruta según tu estructur
 router.get("/", getUsers);
 
 router.get("/:userId", getUserbyID);
+
+router.post("/", createUser);
 
 /*router.get("users/:userId", UsuarioID);
 

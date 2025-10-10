@@ -10,7 +10,7 @@ const app = express(); //crea tu aplicacion.
 
 const mongo_url = "mongodb://localhost:27017/aroundb"; //URL de conexion a la base de datos MongoDB.
 
-const getUsers = require("./routes/users.js");
+const { getUsers, getUserbyID, createUser } = require("./routes/users.js");
 //mongoose.connect("mongodb://localhost:27017/aroundb"); //conecta a la base de datos MongoDB llamada "aroundb".
 
 const PORT = 3000; //Define en que puerto.
@@ -32,6 +32,8 @@ const users = require("./data/users.json"); //importa el archivo JSON con los da
 const cards = require("./data/cards.json"); //importa el archivo JSON con los datos de tarjetas.
 
 app.use("/", getUsers);
+app.use("/:userId", getUserbyID);
+app.use("/", createUser);
 
 app.get("/users", (req, res) => {
   res.json(users);
