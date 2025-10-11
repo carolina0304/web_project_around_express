@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const {} = require("../controllers/users.js");
+const {
+  getCards,
+  createNewcard,
+  deleteCard,
+} = require("../controllers/users.js");
 
 const Card = require("../models/card.js");
 
@@ -11,7 +15,7 @@ router.post("/", createNewcard);
 
 router.delete("/:cardId", deleteCard);
 
-const path = require("path");
+/*const path = require("path");
 const fs = require("fs");
 
 const rutaCards = path.join(__dirname, "data", "cards.json");
@@ -27,4 +31,4 @@ fs.readFile(rutaCards, "utf8", (err, data) => {
   } catch (parseErr) {
     console.error("Error al parsear JSON:", parseErr);
   }
-});
+});*/
