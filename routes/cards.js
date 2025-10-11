@@ -5,7 +5,7 @@ const {
   getCards,
   createNewcard,
   deleteCard,
-} = require("../controllers/users.js");
+} = require("../controllers/cards.js");
 
 const Card = require("../models/card.js");
 
@@ -32,3 +32,4 @@ fs.readFile(rutaCards, "utf8", (err, data) => {
     console.error("Error al parsear JSON:", parseErr);
   }
 });*/
+module.exports = router;

@@ -11,25 +11,22 @@ module.exports.getUsers = (req, res) => {
     });
 };
 
-/*export const hola = (req, res) => {
-  res.send("hola carolina"); //✅ Envía los usuarios al cliente
-};
-
-export const hello = (req, res) => {
-  res.send("hello carolina"); //✅ Envía los usuarios al cliente
-};*/
-
 module.exports.getUserbyID = (req, res) => {
   User.findById(req.params.userId)
+    .orFail() //convierte el null en un error real
     .then((user) => {
-      if (!user) {
-        return res.status(404).send({ message: "El usuario no existe" });
-      }
+      // Solo llega aquí si SÍ encontró el usuario
       res.send({ data: user });
     })
     .catch((err) => {
-      console.error(err);
-      res.status(500).send({ message: "Error interno del servidor" });
+      // Ahora SÍ captura el error cuando no encuentra el usuario
+      if (err.name === "DocumentNotFoundError") {
+        res.status(404).send({ message: "Usuario no encontrado" });
+      } else if (err.name === "CastError") {
+        res.status(400).send({ message: "ID inválido" });
+      } else {
+        res.status(500).send({ message: "Error interno del servidor" });
+      }
     });
 };
 
