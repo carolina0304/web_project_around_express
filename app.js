@@ -2,10 +2,6 @@ const express = require("express");
 
 const mongoose = require("mongoose"); //importa Mongoose.
 
-/*const Card = require("./models/card.js"); //importa el modelo de tarjeta.*/
-
-/*const User = require("./models/user.js"); //importa el modelo de usuario.*/
-
 const app = express(); //crea tu aplicacion.
 app.use(express.json());
 
