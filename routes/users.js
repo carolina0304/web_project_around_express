@@ -4,6 +4,8 @@ const {
   getUsers,
   getUserbyID,
   createUser,
+  UpdateId,
+  UpdateAvatar,
 } = require("../controllers/users.js");
 
 //const path = require("path");
@@ -16,6 +18,10 @@ router.get("/", getUsers);
 router.get("/:userId", getUserbyID);
 
 router.post("/", createUser);
+
+router.patch("/me", UpdateId);
+
+router.patch("/me/avatar", UpdateAvatar);
 
 /*router.get("users/:userId", UsuarioID);
 
