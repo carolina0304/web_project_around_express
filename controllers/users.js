@@ -42,3 +42,23 @@ module.exports.createUser = (req, res) => {
       }
     });
 };
+
+module.exports.UpdateId = (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id, //primer parametro:ID del usuario
+    { name: req.body.name, about: req.body.about }, // segundo parámetro: campos a actualizar
+    { new: true, runValidators: true } // tercer parámetro: opciones
+  )
+    .then((user) => res.send({ data: user }))
+    .catch((err) => res.status(500).send({ message: "Error" }));
+};
+
+module.exports.UpdateAvatar = (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id, // primer parámetro: ID del usuario
+    { avatar: req.body.avatar }, // segundo parámetro: campo avatar a actualizar
+    { new: true, runValidators: true } // tercer parámetro: opciones
+  )
+    .then((user) => res.send({ data: user }))
+    .catch((err) => res.status(500).send({ message: "Error" }));
+};
